@@ -7,7 +7,6 @@ function DoMagic2() {
     {
         for (let verb = 0; verb < 100; verb++)
         {
-            // Check if we have found the output we're asked for
             if (TryMatch(noun, verb) == 19690720)
             {
                 document.write(
@@ -20,20 +19,14 @@ function DoMagic2() {
 }
 
 function TryMatch(noun, verb) {
-    // Copy orignal array data
-    console.log('1');
     for (let i = 0; i < arr.length; i++) {
         codes[i] = arr[i];
     }
-    console.log('2');
-    console.log(codes);
     codes[1] = noun;
     codes[2] = verb;
-    // Execute intcode
     let pos = 0;
     while (codes[pos] !== 99)
     {
-        console.log(codes[pos]);
         if (codes[pos] === 1)
         {
             codes[codes[pos + 3]] = codes[codes[pos + 1]] + codes[codes[pos + 2]];
@@ -45,6 +38,5 @@ function TryMatch(noun, verb) {
         pos += 4;
     }
 
-    // Result is in address 0
     return codes[0];       
 }
